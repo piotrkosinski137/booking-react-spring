@@ -2,23 +2,15 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
   offers: [],
-  selectedOffer: {
-    id: 8,
-    title: 'King room',
-    price: 300,
-    x: 51.509,
-    y: -0.07,
-    booked: true,
-    image: "https://i.dobrzemieszkaj.pl/i/31/45/36/r3/1920/wood-core-house-w-dwa-dni-zbuduje-dom-na-4buildings.jpg",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores aspernatur consectetur consequatur consequuntur debitis ducimus, est expedita fugiat itaque molestias necessitatibus neque, quaerat, qui quisquam quos ratione temporibus unde."
-  },
+  selectedOffer: {},
   loading: false,
   mapCoordinates: {x: 51.505, y: -0.09},
 
   search: {
     from: new Date(),
-    to: new Date(),
-    days: 1
+    to: new Date(new Date().getFullYear(), new Date().getUTCMonth(), new Date().getDate() + 1),
+    days: 1,
+    city: null
   }
 }
 
@@ -50,6 +42,7 @@ const offers = (state = initialState, action) => {
         ...state,
         selectedOffer: state.offers.filter(
             offer => offer.id === action.offerId)[0]
+
       }
     }
     case actionTypes.CLEAR_CURRENT_OFFER: {
@@ -69,6 +62,7 @@ const offers = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        selectedOffer: {}
       }
     }
     case actionTypes.RESERVE_OFFER_FAILURE: {
@@ -82,8 +76,9 @@ const offers = (state = initialState, action) => {
       return {
         ...state,
         search: {
+          ...state.search,
           from: action.from,
-          to: state.search.to,
+          to: action.from > state.search.to ? new Date(action.from).setDate(action.from.getDate() + 1): state.search.to,
           days: days_between(state.search.to, action.from)
         }
       }
@@ -92,9 +87,18 @@ const offers = (state = initialState, action) => {
       return {
         ...state,
         search: {
-          from: state.search.from,
+          ...state.search,
           to: action.to,
           days: days_between(action.to, state.search.from)
+        }
+      }
+    }
+    case actionTypes.SEARCH_CITY_CHANGE: {
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          city: action.city
         }
       }
     }

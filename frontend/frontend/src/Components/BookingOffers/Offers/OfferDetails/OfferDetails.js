@@ -49,7 +49,7 @@ const OfferDetails = (props) => {
       offerId: selectedOffer.id,
       from: from,
       to: to,
-      price: selectedOffer.price
+      total: selectedOffer.price * days
     }, props.history))
   }
 

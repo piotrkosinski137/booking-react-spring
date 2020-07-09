@@ -1,6 +1,7 @@
 package com.project.domain;
 
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,9 @@ public class TimeFrame {
   @GeneratedValue
   private int id;
 
+  @Column(name="time_from")
   private LocalDate from;
+  @Column(name="time_to")
   private LocalDate to;
 
   public TimeFrame() {

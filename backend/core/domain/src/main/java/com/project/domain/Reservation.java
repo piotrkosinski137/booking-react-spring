@@ -1,6 +1,7 @@
 package com.project.domain;
 
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,8 +11,10 @@ public class Reservation {
 
   @Id
   @GeneratedValue
-  private int id;
+  private Integer id;
+  @Column(name="reservation_from")
   private LocalDate from;
+  @Column(name="reservation_to")
   private LocalDate to;
   private int offerId;
   private int total;
@@ -27,11 +30,11 @@ public class Reservation {
   }
 
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

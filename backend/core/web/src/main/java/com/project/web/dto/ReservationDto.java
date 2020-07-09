@@ -1,8 +1,9 @@
 package com.project.web.dto;
 
-import static java.time.LocalDate.parse;
+import static com.project.web.util.DateParser.parseFrom;
 
 import com.project.domain.Reservation;
+import com.project.web.util.DateParser;
 
 public class ReservationDto {
 
@@ -56,6 +57,6 @@ public class ReservationDto {
   }
 
   public Reservation toEntity() {
-    return new Reservation(offerId, parse(from), parse(to), total);
+    return new Reservation(offerId, parseFrom(from), parseFrom(to), total);
   }
 }

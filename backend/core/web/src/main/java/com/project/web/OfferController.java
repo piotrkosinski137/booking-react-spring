@@ -27,8 +27,7 @@ public class OfferController {
   private final ManageCityCoordinates manageCityCoordinates;
   private final CreateReservation createReservation;
 
-  public OfferController(OfferUseCase offerUseCase,
-      ManageCityCoordinates manageCityCoordinates,
+  public OfferController(OfferUseCase offerUseCase, ManageCityCoordinates manageCityCoordinates,
       CreateReservation createReservation) {
     this.offerUseCase = offerUseCase;
     this.manageCityCoordinates = manageCityCoordinates;
@@ -43,7 +42,7 @@ public class OfferController {
 
   @GetMapping
   public SearchOffersDto findOffers(@RequestParam String from, @RequestParam String to,
-      @RequestParam String city) throws IOException {
+      @RequestParam(required = false, defaultValue = "London") String city) throws IOException {
     Coordinates coordinates = manageCityCoordinates.by(city);
     return new SearchOffersDto(
         offerUseCase.findOffers(parseFrom(from), parseFrom(to), coordinates.getX(),
