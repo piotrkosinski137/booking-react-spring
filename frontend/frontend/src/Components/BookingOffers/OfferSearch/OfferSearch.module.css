@@ -1,0 +1,17 @@
+.container {
+  margin: 10px 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.searchItem {
+  margin-right: 10px;
+}
+
+.buttonContainer {
+  margin-top: 25px;
+}
+
+.autocomplete {
+  padding: 16px 10px 0 0;
+}

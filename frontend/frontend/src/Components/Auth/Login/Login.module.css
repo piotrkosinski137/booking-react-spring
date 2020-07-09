@@ -1,0 +1,29 @@
+.form {
+  text-align: center;
+}
+
+.pageTitle {
+  margin: 20px auto 20px auto;
+}
+
+.textField {
+  margin: 10px auto;
+}
+
+.image {
+  width: 60px;
+  height: 60px;
+  margin: 10px auto 10px auto;
+}
+
+.button {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  color: crimson;
+  font-size: 15px;
+}
